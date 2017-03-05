@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    {% load staticfiles %}
+        <link rel="stylesheet" href="{% static '/css/style.css' %}">
+    <title>My Belt Test</title>
+  </head>
+  <body>
+    <div id ="box">
+               <h1>Welcome!</h1>
+               {% if messages %}
+                   <ul class="messages">
+                   {% for message in messages %}
+                       <li{% if messages.tags %} class="{{message.tags }}"{% endif %}><span style="color:red">{{message}}</span></li>
+                   {% endfor %}
+                   </ul>
+               {% endif %}
+               <div id ="createuser">
+                   <form action="createuser" method="post">
+                   {% csrf_token %}
+                       <div>
+                           <label for="name"><span>Name</span></label>
+                           <input class="create" type="text" name="name" value="">
+                       </div>
+                       <div>
+                           <label  for="alias"><span>Alias</span></label>
+                           <input  class="create" type="text" name="alias" value="">
+                       </div>
+                       <div>
+                           <label  for="email"><span>Email</span></label>
+                           <input  class="create" type="email" name="email" value="">
+                       </div>
+                       <div>
+                           <label for="password"><span>Password</span></label>
+                           <input class="create" type="password" name="password">
+                       </div>
+                       <div>
+                           <label for="confirm_password">Confirm Password</label>
+                           <input class="create" type="password" name="confirm_password">
+                       </div>
+                       <div>
+                           <label for="dob">Date of Birth</label>
+                           <input type="date" name="bday">
+                       </div>
+                       <div><input type="submit" name="submit" value="Register"></div>
+
+                   </form>
+               </div>
+
+               <div id="login">
+                   <form action="/login" method="post">
+                   {% csrf_token %}
+                       <div>
+                           <label for="email">Email</label>
+                           <input type="text" name="email" value="">
+                       </div>
+                       <div>
+                           <label for="password">Password</label>
+                           <input type="password" name="password" value="">
+                       </div>
+
+                       <div><input type="submit" name="submit" value="Login"></div>
+                   </form>
+               </div>
+           </div>
+  </body>
+</html>

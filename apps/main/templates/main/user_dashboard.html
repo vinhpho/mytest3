@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    {% load staticfiles %}
+        <link rel="stylesheet" href="{% static '/css/user_dashboard.css' %}">
+    <meta charset="utf-8">
+    <title>User Dashboard</title>
+  </head>
+  <body>
+    {% if messages %}
+        <ul class="messages">
+        {% for message in messages %}
+            <li{% if messages.tags %} class="{{message.tags }}"{% endif %}><span style="color:red">{{message}}</span></li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+  <div class="row">
+    {% for curr_name in curr_names %}
+        <h2>Hello, {{curr_name.name}}!</h2>
+    {% endfor %}
+    <a href="/logout">Logout</a>
+  </div>
+  <p>Here is your list of friends:</p>
+  <div class="">
+    <table>
+            <tr>
+               <th>Alias</th>
+               <th>Action</th>
+            </tr>
+            {% for friend in friends %}
+              <tr>
+                  <td>{{friend.friend.alias}}</td>
+                  <td><a href="/user/{{friend.friend_id}}">View profile</a> <a href="/remove_friend/{{friend.friend_id}}">Remove as Friend</a></td>
+              </tr>
+            {% endfor %}
+          </table>
+  </div>
+  <p>Other User not in your friend's list:</p>
+  <div class="">
+    <table>
+            <tr>
+               <th>Alias</th>
+               <th>Action</th>
+            </tr>
+            {% for other in others %}
+              <tr>
+                  <td><a href="/nonuser/{{other.id}}">{{other.alias}}</a></td>
+                  <td> <form class="" action="/add_friend/{{other.id}}" method="post">
+                        {% csrf_token %}
+                        <input type="submit" name="" value="Add as Friend">
+                      </form>
+                  </td>
+              </tr>
+            {% endfor %}
+          </table>
+  </div>
+
+  </body>
+</html>

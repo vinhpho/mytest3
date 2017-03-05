@@ -1,0 +1,31 @@
+*{
+    margin:0px;
+    padding:0px;
+}
+
+div #box{
+    width: 970px;
+    margin: 0 auto;
+    background-color: cornflowerblue;
+    position: relative
+}
+label{
+    color:cornflowerblue;
+    font-weight: bold;
+    display:block;
+    width:150px;
+    float:left;
+}
+label:after { content: ": " }
+input{
+    padding: 1px;
+    margin:5px;
+    display: block;
+}
+li {
+    color:red;
+}
+table, th, td{
+    border: 1px solid black;
+    width: 500px;
+}
